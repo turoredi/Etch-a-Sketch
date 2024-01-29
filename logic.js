@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < n * n; i++) {
             let div = document.createElement('div');
             div.classList.add('grid-item');
+            div.style.flexGrow = '0';
+            div.style.flexShrink = '0';
+            div.style.flexBasis = `calc(100% / ${n})`;
             div.addEventListener('mouseover', function() {
                 div.style.backgroundColor = 'black';
             });
@@ -11,33 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Use a closure to capture the correct reference to div
                 setTimeout(function(currentDiv) {
                     currentDiv.style.backgroundColor = 'white';
-                    currentDiv.style.flexGrow = '0';
-                    currentDiv.style.flexShrink = '0';
-                    currentDiv.style.flexBasis = `calc(100% / ${n})`;
                 }, 3000, div);
             });
             document.querySelector('.grid-container').appendChild(div);
         }
     }
-    for (let i = 0; i < 16 * 16; i++) {
-        let div = document.createElement('div');
-        div.classList.add('grid-item');
-        div.addEventListener('mouseover', function() {
-            div.style.backgroundColor = 'black';
-        });
-        div.addEventListener('mouseout', function() {
-            // Use a closure to capture the correct reference to div
-            setTimeout(function(currentDiv) {
-                currentDiv.style.backgroundColor = 'white';
-
-            }, 2000, div);
-        });
-        div.style.flexGrow = '0';
-        div.style.flexShrink = '0';
-        div.style.flexBasis = `calc(100% / 16)`;
-
-        document.querySelector('.grid-container').appendChild(div);
-    }
+    
     createGrid(16);
 
     // get ChangeGrid class button
